@@ -1,4 +1,5 @@
 from Informations import Informations
+
 import requests
 
 url = 'https://api.worldbank.org/V2/fr/country/all/indicator/EN.ATM.GHGT.KT.CE?format=json&per_page=10'
