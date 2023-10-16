@@ -51,6 +51,8 @@ class Informations:
         """
         Créer une représentation json de l'objet Informations
 
+        Returns:
+            Objet Informations sous forme de chaîne json
         """
         informations_dict = {
             'page': self.page,
