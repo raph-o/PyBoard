@@ -8,8 +8,8 @@ url = 'https://api.worldbank.org/V2/fr/country/all/indicator/EN.ATM.GHGT.KT.CE?f
 response = requests.get(url)
 jsonResponse = response.json()
 
-"""informations = Informations.extract_informations(jsonResponse)
-print(informations)"""
+informations = Informations.extract_informations(jsonResponse)
+print(informations)
 
 results = Results.extract_results(jsonResponse)
 for result in results:
