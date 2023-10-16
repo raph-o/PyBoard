@@ -13,7 +13,7 @@ class Results:
         return f'Country3isocode: {self.countryiso3code}, Date: {self.date}, Value: {self.value}'
 
     @classmethod
-    def from_json(cls, json_data: dict) -> list:
+    def from_json(cls, json_data: dict) -> list[Results]:
         results = []
         for item in json_data:
             countryiso3code = item.get('countryiso3code')
@@ -24,7 +24,7 @@ class Results:
         return results
 
     @classmethod
-    def extract_results(cls, json_dict: dict) -> list:
+    def extract_results(cls, json_dict: dict) -> list[Results]:
         return Results.from_json(json_dict[1])
 
     def to_json(self) -> str:
