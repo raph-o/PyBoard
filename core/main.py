@@ -3,13 +3,11 @@ import plotly.express as px
 import json
 import os
 import pandas as pd
+from api.Api import Api
 
-json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'temp', 'GesPerRegion.json')
+x = Api()
 
-df = pd.read_json(json_path)
-df = df.dropna(subset=["value"])
+df = pd.read_json(x.get_result())
+print(df)
 
-# créer un histogram GES/year
-fig = px.bar(df, x="date", y="value", color="countryiso3code")
 
-fig.show()
