@@ -4,12 +4,20 @@ import json
 import os
 import pandas as pd
 
-json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'temp', 'GesPerRegion.json')
+from api import api
 
-df = pd.read_json(json_path)
-df = df.dropna(subset=["value"])
+results = api.get_data()
+json_results = []
+
+for result in results:
+    json_results.append(result.to_json())
+
+parsed_results = [json.loads(result) for result in json_results]
+
+df = pd.read_json(json.dumps(parsed_results))
+print(df)
 
 # créer un histogram GES/year
-fig = px.bar(df, x="date", y="value", color="countryiso3code")
+fig = px.bar(df, x='date', y='value', color='countryiso3code')
 
 fig.show()

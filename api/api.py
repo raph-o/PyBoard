@@ -1,11 +1,11 @@
-from Informations import Informations
-from Results import Results
 
 import requests
 
+from api.Results import Results
+
 
 def get_data() -> list[Results]:
-    url = 'https://api.worldbank.org/V2/fr/country/all/indicator/EN.ATM.GHGT.KT.CE?format=json&per_page=1000'
+    url = 'https://api.worldbank.org/V2/fr/country/all/indicator/EN.ATM.GHGT.KT.CE?format=json&per_page=16758'
 
     response = requests.get(url)
     jsonResponse = response.json()
