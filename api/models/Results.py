@@ -5,7 +5,6 @@ import json
 class Results:
     def __init__(self, country: str, date: str, value: float):
         self.country = country
-        self.country = country
         self.date = date
         self.value = value
 
@@ -23,9 +22,10 @@ class Results:
         results = []
         for item in json_data:
             country = item.get('country')
-            name = item.get('name')
+            date = item.get('date')
+            value = item.get('value')
 
-            result = cls()
+            result = cls(country, date, value)
             results.append(result)
         return results
 
@@ -49,7 +49,8 @@ class Results:
             Objet Results sous forme de chaîne json
         """
         result_dict = {
-            'countryiso3code': self.countryiso3code,
-            'date': self.name,
+            'name': self.country,
+            'country': self.country,
+            'date': self.date,
         }
         return json.dumps(result_dict)

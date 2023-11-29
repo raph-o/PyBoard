@@ -1,7 +1,7 @@
 import json
 import requests
-from api.ApiTools import ApiRoutes, ApiPreferences
-from api.models import Results
+from api.ApiTools import *
+from api.models.Results import Results
 
 
 class Api:
