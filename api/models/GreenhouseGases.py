@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 
 
-class Results:
+class GreenhouseGases:
     def __init__(self, countryiso3code: str, date: str, value: float):
         self.countryiso3code = countryiso3code
         self.date = date
@@ -13,7 +13,7 @@ class Results:
         return f'Country3isocode: {self.countryiso3code}, Date: {self.date}, Value: {self.value}'
 
     @classmethod
-    def from_json(cls, json_data: dict) -> list[Results]:
+    def from_json(cls, json_data: dict) -> list[GreenhouseGases]:
         """
         Créer une liste de résultats à partir d'un dictionnaire
 
@@ -37,7 +37,7 @@ class Results:
         return results
 
     @classmethod
-    def extract_results(cls, json_dict: dict) -> list[Results]:
+    def extract_results(cls, json_dict: dict) -> list[GreenhouseGases]:
         """
         Extrait les informations d'un dictionnaire json
 
@@ -46,7 +46,7 @@ class Results:
         Returns:
             Liste d'objet Results
         """
-        return Results.from_json(json_dict[1])
+        return GreenhouseGases.from_json(json_dict[1])
 
     def to_json(self) -> str:
         """
