@@ -1,32 +1,36 @@
 from __future__ import annotations
 import json
+import pandas as pd
+import api.Api
+import api.models.Countries
 
 
 class Results:
-    def __init__(self, country: str, date: str, value: float):
+    def __init__(self, country_code: str, country: str, value: float, date: str):
         self.country = country
-        self.date = date
+        self.country_code = country_code
         self.value = value
+        self.date = date
 
     @classmethod
     def from_json(cls, json_data: dict) -> list[Results]:
-        """
-        Créer une liste de résultats à partir d'un dictionnaire
-
-        Args:
-            json_data: Dictionnaire décrivant une liste de résultats
-
-        Returns:
-            Liste d'objets Results contenant les valeurs du dictionnaire, et exlucant les résultats sans valeur
-        """
         results = []
+        countries_list = api.Api.Api.get_countries()
+
         for item in json_data:
-            country = item.get('country')
+            country_code = item.get('countryiso3code')
             date = item.get('date')
             value = item.get('value')
 
-            result = cls(country, date, value)
+            country_name = ""
+
+            for country in countries_list:
+                if country.code == country_code:
+                    country_name = country.name
+
+            result = cls(country_code, country_name, value, date)
             results.append(result)
+
         return results
 
     @classmethod
@@ -49,8 +53,9 @@ class Results:
             Objet Results sous forme de chaîne json
         """
         result_dict = {
-            'name': self.country,
+            'country_code': self.country_code,
             'country': self.country,
             'date': self.date,
+            'value': self.value,
         }
         return json.dumps(result_dict)

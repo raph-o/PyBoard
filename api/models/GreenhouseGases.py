@@ -4,13 +4,13 @@ import json
 
 
 class GreenhouseGases:
-    def __init__(self, countryiso3code: str, date: str, value: float):
-        self.countryiso3code = countryiso3code
+    def __init__(self, countryiso2code: str, date: str, value: float):
+        self.countryiso2code = countryiso2code
         self.date = date
         self.value = value
 
     def __str__(self) -> str:
-        return f'Country3isocode: {self.countryiso3code}, Date: {self.date}, Value: {self.value}'
+        return f'Country3isocode: {self.countryiso2code}, Date: {self.date}, Value: {self.value}'
 
     @classmethod
     def from_json(cls, json_data: dict) -> list[GreenhouseGases]:
@@ -25,14 +25,14 @@ class GreenhouseGases:
         """
         results = []
         for item in json_data:
-            countryiso3code = item.get('countryiso3code')
+            countryiso2code = item.get('country')["id"]
             date = item.get('date')
             value = item.get('value')
 
             if value is None:
                 continue
 
-            result = cls(countryiso3code, date, value)
+            result = cls(countryiso2code, date, value)
             results.append(result)
         return results
 
@@ -56,7 +56,7 @@ class GreenhouseGases:
             Objet Results sous forme de chaîne json
         """
         result_dict = {
-            'countryiso3code': self.countryiso3code,
+            'countryiso2code': self.countryiso2code,
             'date': self.date,
             'value': self.value
         }

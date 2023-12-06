@@ -4,13 +4,12 @@ import json
 
 
 class Countries:
-    def __init__(self, countryiso3code: str, name: str, value: int):
-        self.countryiso3code = countryiso3code
+    def __init__(self, code: str, name: str):
+        self.code = code
         self.name = name
-        self.value = value
 
     def __str__(self) -> str:
-        return f'Country3isocode: {self.countryiso3code}, Name: {self.name}'
+        return f'code: {self.code}, Name: {self.name}'
 
     @classmethod
     def from_json(cls, json_data: dict) -> list[Countries]:
@@ -24,12 +23,11 @@ class Countries:
             Liste d'objets Results contenant les valeurs du dictionnaire, et exlucant les résultats sans valeur
         """
         results = []
-        for item in json_data:
+        for item in json_data[1]:
+            code = item.get('id')
             name = item.get('name')
-            date = item.get('date')
-            value = item.get('value')
 
-            result = cls(name, date, value)
+            result = cls(code, name)
             results.append(result)
         return results
 
@@ -53,8 +51,8 @@ class Countries:
             Objet Results sous forme de chaîne json
         """
         result_dict = {
-            'countryiso3code': self.countryiso3code,
-            'date': self.name,
+            'code': self.code,
+            'name': self.name,
         }
 
         return json.dumps(result_dict)
