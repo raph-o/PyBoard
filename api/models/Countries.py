@@ -26,9 +26,9 @@ class Countries:
         for item in json_data[1]:
             code = item.get('id')
             name = item.get('name')
-
-            result = cls(code, name)
-            results.append(result)
+            if name != "":
+                result = cls(code, name)
+                results.append(result)
         return results
 
     @classmethod

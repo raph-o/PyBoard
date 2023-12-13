@@ -14,7 +14,7 @@ class ApiPreferences:
 class ApiEndPoints:
     RESULTS = (f"{ApiRoutes.BASE_URL}{ApiRoutes.COUNTRIES}/all/indicator/EN.ATM.GHGT.KT.CE?"
                f"{ApiPreferences.JSON_FORMAT}&"
-               f"{ApiPreferences.per_page(1000)}")
+               f"{ApiPreferences.per_page(10000)}")
     COUNTRIES = (f"{ApiRoutes.BASE_URL}{ApiRoutes.COUNTRIES}?"
                  f"{ApiPreferences.JSON_FORMAT}&"
                  f"{ApiPreferences.per_page(500)}")

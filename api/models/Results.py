@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import api.Api
 import api.models.Countries
+import math
 
 
 class Results:
@@ -27,9 +28,10 @@ class Results:
             for country in countries_list:
                 if country.code == country_code:
                     country_name = country.name
-
-            result = cls(country_code, country_name, value, date)
-            results.append(result)
+                    break
+            if country_name != "":
+                result = cls(country_code, country_name, value, date)
+                results.append(result)
 
         return results
 

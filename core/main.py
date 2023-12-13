@@ -14,7 +14,7 @@ json_string = x.get_result()
 json_stream = StringIO(json_string)
 df = pd.read_json(json_stream)
 
-print(Api().get_result())
+print(df)
 
 
 
