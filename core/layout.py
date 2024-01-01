@@ -12,4 +12,6 @@ def get_layout(available_countries):
                      ),
         dcc.Graph(id="graph"),
         dcc.Graph(id="geo"),
+        dcc.Graph(id="pie"),
+        dcc.Graph(id="line"),
     ])

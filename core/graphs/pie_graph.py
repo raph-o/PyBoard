@@ -4,9 +4,9 @@ import plotly.express as px
 
 
 @callback(
-    Output("graph", "figure"),
+    Output("pie", "figure"),
     Input("country", "value"))
-def generate_chart_callback(selected_countries):
+def generate_pie_callback(selected_countries):
     return generate_chart(selected_countries)
 
 
@@ -15,6 +15,5 @@ def generate_chart(selected_countries):
         return px.bar(title="Please select a country")
 
     filtered_df = df[df['country'].isin(selected_countries)]
-    fig = px.bar(filtered_df, x='date', y='value', color='country', title=f'GES for {selected_countries}',
-                 barmode='group', range_x=[1990, 2020])
+    fig = px.pie(filtered_df, values='value', names='country', title=f'GES for {selected_countries}')
     return fig
