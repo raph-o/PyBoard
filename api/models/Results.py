@@ -1,11 +1,12 @@
 from __future__ import annotations
 import json
-import pandas as pd
 import api.Api
 import api.models.Countries
-import math
 
-
+"""
+Un objet de données complet, qui réunis le contenu des requêtes pour obtenir des informations plus précises sur un pays - servant pour le graphique de carte -
+mais aussi pour filtrer les différents résultats que l'on obtient
+"""
 class Results:
     def __init__(self, country_code: str, country: str, value: float, date: str):
         self.country = country
@@ -15,6 +16,11 @@ class Results:
 
     @classmethod
     def from_json(cls, json_data: dict) -> list[Results]:
+        """
+        Créer un objet Results à partir des informations json
+        :param json_data: dictionnaire représentant les données json
+        :return: un objet results
+        """
         results = []
         countries_list = api.Api.Api.get_countries()
 
@@ -40,10 +46,8 @@ class Results:
         """
         Extrait les informations d'un dictionnaire json
 
-        Args:
-            json_dict: Dictionnaire représentant une liste d'objets Results
-        Returns:
-            Liste d'objet Results
+        :param json_dict: Dictionnaire représentant une liste d'objets Results
+        :return: Liste d'objet Results
         """
         return Results.from_json(json_dict[1])
 
@@ -51,8 +55,7 @@ class Results:
         """
         Créer une représentation json de l'objet Results'
 
-        Returns:
-            Objet Results sous forme de chaîne json
+        :return: Objet Results sous forme de chaîne json
         """
         result_dict = {
             'country_code': self.country_code,

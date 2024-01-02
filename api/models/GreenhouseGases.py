@@ -2,7 +2,30 @@ from __future__ import annotations
 
 import json
 
+"""
+Classe permettant l'instanciation d'un objet représentant les taux d'émmission de gaz à effet de serre pour un pays donné par son iso2code.
+Voici un exemple d'objet json utilisé pour l'instanciation provenant d'un appel fait vers l'api :
+{
+  "indicator": {
+    "id": "EN.ATM.GHGT.KT.CE",
+    "value": "Émissions totales de GES (kt d’équivalent CO2)"
+  },
+  "country": {
+    "id": "FR",
+    "value": "France"
+  },
+  "countryiso3code": "FRA",
+  "date": "2014",
+  "value": 427859.1918,
+  "unit": "",
+  "obs_status": "",
+  "decimal": 0
+}
 
+Ici, nous ne prenons que l'iso2code, étant l'id du pays, le taux d'émission de gaz à effet de serre pour une date données.
+Une requête pour récupérer ces informations :
+    GET https://api.worldbank.org/V2/fr/country/all/indicator/EN.ATM.GHGT.KT.CE?format=json&most_recent_year_desc=false&per_page=16758
+"""
 class GreenhouseGases:
     def __init__(self, countryiso2code: str, date: str, value: float):
         self.countryiso2code = countryiso2code
@@ -17,11 +40,8 @@ class GreenhouseGases:
         """
         Créer une liste de résultats à partir d'un dictionnaire
 
-        Args:
-            json_data: Dictionnaire décrivant une liste de résultats
-
-        Returns:
-            Liste d'objets Results contenant les valeurs du dictionnaire, et exlucant les résultats sans valeur
+        :param: json_data: Dictionnaire décrivant une liste de résultats
+        :return: Liste d'objets Results contenant les valeurs du dictionnaire, et exlucant les résultats sans valeur
         """
         results = []
         for item in json_data:
@@ -41,10 +61,8 @@ class GreenhouseGases:
         """
         Extrait les informations d'un dictionnaire json
 
-        Args:
-            json_dict: Dictionnaire représentant une liste d'objets Results
-        Returns:
-            Liste d'objet Results
+        :param: json_dict: Dictionnaire représentant une liste d'objets Results
+        :return: Liste d'objet Results
         """
         return GreenhouseGases.from_json(json_dict[1])
 
@@ -52,8 +70,7 @@ class GreenhouseGases:
         """
         Créer une représentation json de l'objet Results'
 
-        Returns:
-            Objet Results sous forme de chaîne json
+        :return: Objet Results sous forme de chaîne json
         """
         result_dict = {
             'countryiso2code': self.countryiso2code,

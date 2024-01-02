@@ -3,6 +3,18 @@ from __future__ import annotations
 import json
 
 
+"""
+Objet information présent dans toutes les réponses json que renvoie l'api.
+Cet objet a été le premier afin de prototyper le projet et travailler sur les autres aspects du dashnoard en parallèle.
+Exemple de ce renvois l'api sous forme de json :
+{
+    "page": 1,
+    "pages": 1,
+    "per_page": "300",
+    "total": 297
+}
+N'importe quelle requête disponible dans les autres classes modèle permet de récupérer un tel objet
+"""
 class Information:
     def __init__(self, page: int, pages: int, per_page: int, total: int, source_id: str, last_updated: str) -> None:
         self.page = page
