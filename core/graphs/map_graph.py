@@ -1,18 +1,32 @@
 from dash import Output, Input, callback
-from core.main import df
 
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.graph_objs import Figure
 
 
 @callback(
     Output("geo", "figure"),
     Input("country", "value"))
-def generate_map_callback(selected_countries):
-    return generate_map(selected_countries)
+def generate_map_callback(selected_countries) -> Figure:
+    """
+    Enregistre le callback pour gérer la map. Notons l'utilisation d'import dans la fonction afin d'éviter une circular dépendency error
+
+    :param selected_countries: pays sélectionnés dans le formulaire
+    :return: La map mise à jour
+    """
+    from core.main import df
+    return generate_map_graph(selected_countries, df)
 
 
-def generate_map(selected_countries):
+def generate_map_graph(selected_countries, df) -> Figure:
+    """
+    Créer la figure map
+
+    :param selected_countries: pays sélectionnés dans le formulaire
+    :param df: données de traitement pour la liste des pays sélectionnés
+    :return: Une figure map
+    """
     if selected_countries is None:
         return px.choropleth(title="Please select a country")
 
