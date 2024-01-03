@@ -13,7 +13,7 @@ def generate_pie_callback(selected_countries) -> Figure:
     :param selected_countries: pays sélectionnés dans le formulaire
     :return: La map mise à jour
     """
-    from core.main import df
+    from main import df
     return generate_pie_graph(selected_countries, df)
 
 

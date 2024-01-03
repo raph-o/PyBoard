@@ -1,6 +1,5 @@
 import json
 import requests
-
 import api
 from api.models import Countries, Results
 from api.ApiTools import *

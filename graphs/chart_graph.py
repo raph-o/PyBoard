@@ -13,7 +13,7 @@ def generate_chart_callback(selected_countries) -> Figure:
     :param selected_countries: liste des pays sélectionnés dans le formulaire
     :return: La charte mise à jour
     """
-    from core.main import df
+    from main import df
     return generate_chart(selected_countries, df)
 
 

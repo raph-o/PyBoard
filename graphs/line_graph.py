@@ -14,7 +14,7 @@ def generate_line_callback(selected_countries) -> Figure:
     :param selected_countries: liste des pays sélectionnés dans le formulaire
     :return: Les lignes mise à jour
     """
-    from core.main import df
+    from main import df
     return generate_line_graph(selected_countries, df)
 
 
