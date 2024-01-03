@@ -17,8 +17,6 @@ Concernant les outils utilisés pendant le développement, nous avons procéder 
 - Documentation sur dash
 - Travail en parallèle sur l'api et sur le dashboard
 
----
-
 ## Guide utilisateur
 
 Le projet utilise la version 3.11.4. Assurez vous donc d'avoir au minimum cette version installée ou une plus récente sur votre machine locale.
@@ -33,7 +31,7 @@ Clonez le projet sur votre machine locale
 git clone https://github.com/raph-o/PyBoard.git
 ```
 
-Installer les blibliothèques additionnels comme suit :
+Installez les blibliothèques additionnelles comme suit :
 
 ```shell
 cd PyBoard
@@ -42,9 +40,20 @@ python -m pip install -r requirements.txt
 
 ### Démarrage
 
+Pour lancer le dashboard, assurez vous d'être dans le répertoire Pyboard, et exécutez la commande suivante :
+```shell
+python main.py
+```
+
 ### Utilisation
 
----
+Une fois que vous avez démarré, rendez-vous à l'adresse indiquée par votre console. Vous devriez voir un message similaire dans cette dernière :
+```shell
+Dash is running on http://127.0.0.1:8050/
+
+ * Serving Flask app 'main'
+ * Debug mode: on
+```
 
 ## Guide développeur
 
@@ -54,16 +63,111 @@ Nous avons pensé notre code de la manière la plus modulaire possible, nous avo
 
 Le module api va contenir les différentes classes relatives aux intéractions et à la construction de notre propre jeu de données à partir des réponses de l'api. Le module est pensé de manière modulaire : c'est à dire que rajouter un jeu de données pertinent pour l'étude est aisé, il suffit de créer un modèle avec des fonctions similaires à tous et ajouter la route dans la classe dédiée à cela.
 
-Voici un diagramme de notre module api et de son sous-module module :
+Voici un diagramme de notre module api et de son sous-module modèles :
 
 ```mermaid
+classDiagram
+  class Api {
+    - mode: str
+    + get_result(): str
+    + get_countries()
+  }
 
+  class ApiRoutes {
+    - BASE_URL: str
+    + COUNTRIES: str
+  }
+
+  class ApiPreferences {
+    - JSON_FORMAT: str
+    + per_page(x: int): str
+  }
+
+  class ApiEndPoints {
+    - RESULTS: str
+    - COUNTRIES: str
+  }
+
+  class ApiTools {
+    - BASE_URL: str
+  }
+
+  Api --|> ApiRoutes
+  ApiEndPoints --|> ApiTools
+  ApiPreferences --|> ApiTools
+
+  class Countries {
+    - code: str
+    - name: str
+    + from_json(json_data: dict): list[Countries]
+    + extract_results(json_dict: dict): list[Countries]
+    + to_json(): str
+  }
+
+  class GreenhouseGases {
+    - countryiso2code: str
+    - date: str
+    - value: float
+    + from_json(json_data: dict): list[GreenhouseGases]
+    + extract_results(json_dict: dict): list[GreenhouseGases]
+    + to_json(): str
+  }
+
+  class Information {
+    - page: int
+    - pages: int
+    - per_page: int
+    - total: int
+    - source_id: str
+    - last_updated: str
+    + from_json(json_data: dict): Information
+    + extract_information(json_dict: dict): Information
+    + to_json(): str
+  }
+
+  class Results {
+    - country_code: str
+    - country: str
+    - value: float
+    - date: str
+    + from_json(json_data: dict): list[Results]
+    + extract_results(json_dict: dict): list[Results]
+    + to_json(): str
+  }
+
+  Results --|> Countries
+  Results --|> GreenhouseGases
+  Results --|> Information
 ```
 
-Le module core va contenir un sous module graphs servant à définir les callbacks pour les différents graphiques que l'on a dans le dashboard, et afin d'externaliser le layout pour avoir un fichier main qui s'occupe simplement d'importer les différents callbacks et qui va ensuite lancer le serveur.
+Le module graphs va contenir les différents graphiques du dashboard
 
-Voici un diagramme du module et de son sous-module :
+Voici un diagramme du graphs :
 
+```mermaid
+classDiagram
+  class pie_graph {
+    + generate_pie_callback(selected_countries): Figure
+    + generate_pie_graph(selected_countries, df): Figure
+  }
+
+  class chart_graph {
+    + generate_chart_callback(selected_countries): Figure
+    + generate_chart(selected_countries, df): Figure
+  }
+
+  class line_graph {
+    + generate_line_callback(selected_countries): Figure
+    + generate_line_graph(selected_countries, df): Figure
+  }
+
+  class map_graph {
+    + generate_map_callback(selected_countries): Figure
+    + generate_map_graph(selected_countries, df): Figure
+  }
+```
+
+Et enfin, voici le diagramme des fichiers main.py et layout.py qui sont les fers de lance du dashboard puisqu'ils gèrent respectivement les appels aux différents callbacks et la mise en page du dashboard :
 ```mermaid
 
 ```
