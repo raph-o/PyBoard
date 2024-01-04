@@ -171,3 +171,12 @@ Et enfin, voici le diagramme des fichiers main.py et layout.py qui sont les fers
 ```mermaid
 
 ```
+
+## Etude
+
+Comme vous l'aurez compris, notre étude porte sur le taux d'émissions de gaz à effet de serre des différents pays dans le monde.
+
+On le sait, les pays ne font pas grand nombre d'effort pour réduire leur taux d'émission, malgré les différents évènements comme la cop 21 et consort où les pays se réunissent pour discuter d'un plan d'action pour la planète.
+
+Passons directement à une analyse de deux pays importants et ayant une politique environnementale totalement différente : la france et l'allemagne.
+
