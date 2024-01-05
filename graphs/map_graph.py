@@ -28,7 +28,7 @@ def generate_map_graph(selected_countries, df) -> Figure:
     :return: Une figure map
     """
     if selected_countries is None:
-        return px.choropleth(title="Please select a country")
+        return px.choropleth(title="Veuillez sélectionner un pays")
 
     fig = go.Figure()
     filtered_df = df[df['country'].isin(selected_countries)]
@@ -47,7 +47,6 @@ def generate_map_graph(selected_countries, df) -> Figure:
         )
 
     fig.update_layout(
-        title="Choropleth Map",
         geo=dict(
             showframe=False,
             projection_type='natural earth'

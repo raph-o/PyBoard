@@ -25,9 +25,9 @@ def generate_chart(selected_countries, df) -> Figure:
     :return: Une figure charte
     """
     if selected_countries is None:
-        return px.bar(title="Please select a country")
+        return px.bar(title="Veuillez sélectionner un pays")
 
     filtered_df = df[df['country'].isin(selected_countries)]
-    fig = px.bar(filtered_df, x='date', y='value', color='country', title=f'GES for {selected_countries}',
-                 barmode='group', range_x=[1990, 2020])
+    fig = px.bar(filtered_df, x='date', y='value', color='country',
+                 barmode='group', range_x=[1990, 2020]).update_layout(xaxis_title="Année", yaxis_title="valeur (en kt)")
     return fig

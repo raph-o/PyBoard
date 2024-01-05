@@ -2,7 +2,7 @@ from dash import html, dcc
 
 
 def get_layout(available_countries):
-    default_selected_countries = ['France', 'Allemagne', 'Italie']  # Ajout des pays par défaut
+    default_selected_countries = ['France', 'Allemagne']  # Ajout des pays par défaut
 
     return html.Div([
         html.H1('GES per country', style={'color': '#333', 'marginBottom': 20, 'font-family': 'Arial, sans-serif',
