@@ -48,11 +48,9 @@ def generate_map_graph(selected_countries, selected_date, df) -> Figure:
                 locationmode='ISO-3'
             )
         )
-
-    fig.update_layout(
+    return fig.update_layout(
         geo=dict(
             showframe=False,
-            projection_type='natural earth'
-        )
+            projection_type='equirectangular'
+        ),
     )
-    return fig

@@ -5,7 +5,7 @@ def get_layout(available_countries, available_dates):
     default_selected_countries = ['France', 'Allemagne']
 
     return html.Div([
-        html.H1('GES per country', style={'color': '#333', 'marginBottom': 20, 'font-family': 'Arial, sans-serif',
+        html.H1("Taux d'émissions de GES en kilotonnes de CO2", style={'color': '#333', 'marginBottom': 20, 'font-family': 'Arial, sans-serif',
                                           'text-align': 'center'}),
         html.P("Country:", style={'fontSize': 18, 'font-family': 'Georgia, serif'}),
         dcc.Dropdown(
