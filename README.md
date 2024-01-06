@@ -180,19 +180,19 @@ On le sait, les pays ne font pas grand nombre d'effort pour réduire leur taux d
 
 Passons directement à une analyse de deux pays importants et ayant une politique environnementale totalement différente : la france et l'allemagne.
 
-![Histogramme_France_Allemagne](img.png)
+![Histogramme_France_Allemagne](resources/img.png)
 
 Comme on peut le voir, l'Allemagne et la France sont deux pays à taux d'émission stagnant. Toutefois, on peut voir que la France est un pays bien moins polluant que l'Allemagne, entre autre car l'Allemagne a opéré à une sortie nucléaire, se basant beaucoup plus sur les énergies renouvelables et le charbon; alors que la France est un pays se basant fortement sur l'énergie nucléaire.
 
 Si on prend donc un pourcentage du taux de pollution entre ces deux pays, on va obtenir quelque chose comme ça pour l'année 2020 :
 
-![Camembert_France_Allemagne](img_1.png)
+![Camembert_France_Allemagne](resources/img_1.png)
 
 La France est donc moins polluante, et ce, entre autre grâce aux différentes énergies renouvelables utilisées, mais aussi grâce au nucléaire. Même si ce dernier est mauvais à terme pour la planète temps que l'on n'a pas trouvée de moyen sûr et viable d'éliminer les déchets nucléaires, il est un moyen économique et sain de fournir de l'énergie.
 
 Passons maintenant à trois autres pays qui sont parmi les plus puissants politiquement, économiquement et qui ont une influence à ne plus douter : La Russie, la Chine et les États-Unis.
 
-![Comparaison_Russie_USA_](img_3.png)
+![Comparaison_Russie_USA_](resources/img_3.png)
 
 Ce qui peut être le plus marquant, en dehors des chiffres qui sont au minimum deux fois plus hauts que les chiffres de la France et de l'Allemagne, c'est que la Chine continue toujours plus à polluer, alors que la Russie et les USA sont en stagnation.
 
