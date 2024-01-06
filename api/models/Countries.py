@@ -2,7 +2,40 @@ from __future__ import annotations
 
 import json
 
+"""
+Classe permettant l'instanciation d'un objet pays à partir de sa représentation json présentée comme suit dans l'api que nous avons choisis:
+{
+    "id": "FRA",
+    "iso2Code": "FR",
+    "name": "France",
+    "region": {
+        "id": "ECS",
+        "iso2code": "Z7",
+        "value": "Europe et Asie centrale"
+    },
+    "adminregion": {
+        "id": "",
+        "iso2code": "",
+        "value": ""
+    },
+    "incomeLevel": {
+        "id": "HIC",
+        "iso2code": "XD",
+        "value": "Revenu élevé"
+    },
+    "lendingType": {
+        "id": "LNX",
+        "iso2code": "XX",
+        "value": "Non classifié"
+    },
+    "capitalCity": "Paris",
+    "longitude": "2.35097",
+    "latitude": "48.8566"
+}
 
+Ici, nous ne prenons que l'id et le nom afin de les associés à notre jeu de données déjà existant
+Une requête pour récupérer ces informations : GET https://api.worldbank.org/V2/fr/country?per_page=300&format=json
+"""
 class Countries:
     def __init__(self, code: str, name: str):
         self.code = code
