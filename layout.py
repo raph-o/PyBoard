@@ -2,7 +2,7 @@ from dash import html, dcc
 
 
 def get_layout(available_countries, available_dates):
-    default_selected_countries = ['France', 'Allemagne']  # Ajout des pays par défaut
+    default_selected_countries = ['France', 'Allemagne']
 
     return html.Div([
         html.H1('GES per country', style={'color': '#333', 'marginBottom': 20, 'font-family': 'Arial, sans-serif',
@@ -11,7 +11,7 @@ def get_layout(available_countries, available_dates):
         dcc.Dropdown(
             id='country',
             options=[{'label': country, 'value': country} for country in available_countries],
-            value=default_selected_countries,  # Définir les pays par défaut
+            value=default_selected_countries,
             multi=True,
             style={'marginBottom': 20}
         ),
