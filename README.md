@@ -169,7 +169,11 @@ classDiagram
 
 Et enfin, voici le diagramme des fichiers main.py et layout.py qui sont les fers de lance du dashboard puisqu'ils gèrent respectivement les appels aux différents callbacks et la mise en page du dashboard :
 ```mermaid
-
+sequenceDiagram
+    main->>charts: Import callbacks
+    charts->>main: Update graphs
+    main->>layout: Update the layout
+    layout->>main: Give the updated layout
 ```
 
 ## Etude
