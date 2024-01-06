@@ -19,9 +19,10 @@ json_string = api.get_result()
 json_stream = StringIO(json_string)
 df = pd.read_json(json_stream)
 available_countries = df['country'].unique()
+available_dates = df[df['date'].astype(int).between(1990, 2020)]['date'].unique()
 
 app = Dash(__name__)
-app.layout = get_layout(available_countries)
+app.layout = get_layout(available_countries, available_dates)
 
 if __name__ == '__main__':
     app.run_server(debug=True)

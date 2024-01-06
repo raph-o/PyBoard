@@ -1,7 +1,7 @@
 from dash import html, dcc
 
 
-def get_layout(available_countries):
+def get_layout(available_countries, available_dates):
     default_selected_countries = ['France', 'Allemagne']  # Ajout des pays par défaut
 
     return html.Div([
@@ -17,6 +17,8 @@ def get_layout(available_countries):
         ),
         dcc.Graph(id="graph", style={'backgroundColor': '#f9f9f9', 'marginBottom': 20}),
 
+        dcc.Dropdown(id='date_dropdown',
+                     options=[{'label': date, 'value': date} for date in available_dates], value=1990),
         html.Div([
             dcc.Graph(id="geo", style={'backgroundColor': '#ffffff', 'width': '40%', 'flex': 1}),
             dcc.Graph(id="pie", style={'backgroundColor': '#f9f9f9', 'width': '40%', 'flex': 1}),
